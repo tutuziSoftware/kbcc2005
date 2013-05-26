@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>QUnit Example</title>
+	<link rel="stylesheet" href="./qunit/qunit-1.11.0.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="./qunit/qunit-1.11.0.js"></script>
+<script src="../kbcc2005.js"></script>
+<script>
+	test("timeline", function(){
+		var tl = new kbcc2005.Timeline([
+			new kbcc2005.Pop(2),
+			new kbcc2005.Pop(3),
+			new kbcc2005.Pop(5),
+			new kbcc2005.Pop(7)]);
+
+		console.log(tl.bad);
+		equal(tl.bad, 0);
+		equal(tl.good, 0);
+
+		//0
+		tl.click();
+		equal(tl.bad, 1);
+		equal(tl.good, 0);
+
+		//1
+		tl.movePops();
+		tl.click();
+		equal(tl.bad, 2);
+		equal(tl.good, 0);
+
+		//2
+		tl.movePops();
+		tl.click();
+		equal(tl.bad, 2);
+		equal(tl.good, 1);
+
+		//3
+		tl.movePops();
+		tl.click();
+		equal(tl.bad, 2);
+		equal(tl.good, 2);
+
+		//4
+		tl.movePops();
+		tl.click();
+		equal(tl.bad, 3);
+		equal(tl.good, 2);
+
+		//5
+		tl.movePops();
+		tl.click();
+		equal(tl.bad, 3);
+		equal(tl.good, 3);
+
+		//6
+		tl.movePops();
+		tl.click();
+		equal(tl.bad, 4);
+		equal(tl.good, 3);
+
+		//7
+		tl.movePops();
+		tl.click();
+		equal(tl.bad, 4);
+		equal(tl.good, 4);
+	});
+</script>
+</body>
+</html>
