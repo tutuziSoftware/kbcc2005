@@ -277,7 +277,7 @@ Test.prototype = {
 			b = document.createElement( "strong" );
 			b.innerHTML = this.nameHtml + " <b class='counts'>(<b class='failed'>" + bad + "</b>, <b class='passed'>" + good + "</b>, " + this.assertions.length + ")</b>";
 
-			addEvent(b, "click", function() {
+			addEvent(b, "fire", function() {
 				var next = b.parentNode.lastChild,
 					collapsed = hasClass( next, "qunit-collapsed" );
 				( collapsed ? removeClass : addClass )( next, "qunit-collapsed" );
@@ -1107,7 +1107,7 @@ QUnit.load = function() {
 		filter.type = "checkbox";
 		filter.id = "qunit-filter-pass";
 
-		addEvent( filter, "click", function() {
+		addEvent( filter, "fire", function() {
 			var tmp,
 				ol = document.getElementById( "qunit-tests" );
 
@@ -1148,7 +1148,7 @@ QUnit.load = function() {
 		// * Add handlers to the individual elements instead of the container
 		// * Use "click" instead of "change"
 		// * Fallback from event.target to event.srcElement
-		addEvents( urlConfigCheckboxes, "click", function( event ) {
+		addEvents( urlConfigCheckboxes, "fire", function( event ) {
 			var params = {},
 				target = event.target || event.srcElement;
 			params[ target.name ] = target.checked ? true : undefined;

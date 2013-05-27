@@ -7,13 +7,14 @@ kbcc2005.Timeline = function(pops){
     this.position = 0;
 	this.good = 0;
 	this.bad = 0;
+	this.isEnd = false;
 };
 
 (function(){
     var tl = kbcc2005.Timeline.prototype;
 
     //ユーザーがボタンを押した時
-    tl.click = function(){
+    tl.fire = function(){
 		if(this.pops[this.position].position == this.count){
 			this.good++;
 		}else{
@@ -22,12 +23,26 @@ kbcc2005.Timeline = function(pops){
     };
     //タイムラインを1つ移動
     tl.movePops = function(){
+		if(this.isEnd) return;
+
         this.count++;
 
 		if(this.count > this.pops[this.position].position){
 			this.position++;
+
+			if(this.pops[this.position] === void 0) {
+				this.isEnd = true;
+				return;
+			}
 		}
     };
+	tl.isFireTiming = function(){
+		if(this.isEnd){
+			return false;
+		}
+
+		return this.count === this.pops[this.position].position
+	};
 
     tl = null;
 })();

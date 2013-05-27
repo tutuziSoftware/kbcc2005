@@ -23,51 +23,56 @@
 		equal(tl.good, 0);
 
 		//0
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 1);
 		equal(tl.good, 0);
 
 		//1
 		tl.movePops();
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 2);
 		equal(tl.good, 0);
 
 		//2
 		tl.movePops();
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 2);
 		equal(tl.good, 1);
 
 		//3
 		tl.movePops();
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 2);
 		equal(tl.good, 2);
 
 		//4
 		tl.movePops();
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 3);
 		equal(tl.good, 2);
 
 		//5
 		tl.movePops();
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 3);
 		equal(tl.good, 3);
 
 		//6
 		tl.movePops();
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 4);
 		equal(tl.good, 3);
 
 		//7
 		tl.movePops();
-		tl.click();
+		tl.fire();
 		equal(tl.bad, 4);
 		equal(tl.good, 4);
+
+		//8
+		equal(tl.isEnd, false);
+		tl.movePops();
+		ok(tl.isEnd);
 	});
 </script>
 </body>

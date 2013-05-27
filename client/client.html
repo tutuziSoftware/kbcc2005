@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>おとげ</title>
+	<script src="./jquery-2.0.1.min.js"></script>
+	<script src="./angular.min.js"></script>
+	<script src="../kbcc2005.js"></script>
+	<script src="./client.js"></script>
+</head>
+<body ng-controller="test" key="t">
+	<div ng-show="keyQ.isFireTiming()">Q</div>
+	<div ng-show="keyW.isFireTiming()">W</div>
+	<div ng-show="keyE.isFireTiming()">E</div>
+	<div ng-show="keyE.isEnd">おしまい！</div>
+</body>
+</html>
