@@ -7,11 +7,17 @@
 	<script src="./angular.min.js"></script>
 	<script src="../kbcc2005.js"></script>
 	<script src="./client.js"></script>
+	<link href="client.css" rel="stylesheet">
 </head>
-<body ng-controller="test" key="t">
-	<div ng-show="keyQ.isFireTiming()">Q</div>
-	<div ng-show="keyW.isFireTiming()">W</div>
-	<div ng-show="keyE.isFireTiming()">E</div>
+<body ng-controller="test">
+	<div class="timeline"
+		ng-repeat="timeline in timelines"
+		ng-class="'tl' + timeline.getOffset()">
+		<div>{{timeline.getOffset()}}</div>
+		<div>{{keys[$index]}}</div>
+	</div>
+	<div style="clear:both">good: {{good}}</div>
+	<div>bad: {{bad}}</div>
 	<div ng-show="keyE.isEnd">おしまい！</div>
 </body>
 </html>

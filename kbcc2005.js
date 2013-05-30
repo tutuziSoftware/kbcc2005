@@ -43,6 +43,14 @@ kbcc2005.Timeline = function(pops){
 
 		return this.count === this.pops[this.position].position
 	};
+	//次のポップ君の位置
+	tl.getOffset = function(){
+		if(this.isEnd){
+			return -1;
+		}
+
+		return this.pops[this.position].position - this.count;
+	};
 
     tl = null;
 })();

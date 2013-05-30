@@ -1,45 +1,65 @@
 function test($scope, $timeout){
-	$scope.keyQ = new kbcc2005.Timeline([
-		new kbcc2005.Pop(5),
-		new kbcc2005.Pop(10),
-		new kbcc2005.Pop(15)
-	]);
-	$scope.keyW = new kbcc2005.Timeline([
-		new kbcc2005.Pop(6),
-		new kbcc2005.Pop(11),
-		new kbcc2005.Pop(16)
-	]);
-	$scope.keyE = new kbcc2005.Timeline([
-		new kbcc2005.Pop(7),
-		new kbcc2005.Pop(12),
-		new kbcc2005.Pop(17)
-	]);
+	$scope.timelines = [
+		new kbcc2005.Timeline([
+			new kbcc2005.Pop(5),
+			new kbcc2005.Pop(10),
+			new kbcc2005.Pop(15)
+		]),
+		new kbcc2005.Timeline([
+			new kbcc2005.Pop(6),
+			new kbcc2005.Pop(11),
+			new kbcc2005.Pop(16)
+		]),
+		new kbcc2005.Timeline([
+			new kbcc2005.Pop(7),
+			new kbcc2005.Pop(12),
+			new kbcc2005.Pop(17)
+		])
+	];
+	$scope.good = 0;
+	$scope.bad = 0;
 
-	var Q = 81;
-	var W = 97;
-	var E = 69;
+	//Q, W, E
+	var keyCodes = [81, 87, 69];
+	$scope.keys = keyCodes.map(function(keyCode){
+		return String.fromCharCode(keyCode);
+	});
 
 	$("body").keydown(function(e){
-		switch(e.keyCode){
-			case Q:
-				$scope.keyQ.fire();
-				break;
-			case W:
-				$scope.keyW.fire();
-				break;
-			case E:
-				$scope.keyE.fire();
-				break;
+		for(var i = 0 ; i != keyCodes.length ; i++){
+			if(keyCodes[i] === e.keyCode){
+				console.log(keyCodes[i]);
+				$scope.timelines[i].fire();
+
+				$scope.good = $scope.timelines.reduce(count.bind(null, "good"), 0);
+				$scope.bad = $scope.timelines.reduce(count.bind(null, "bad"), 0);
+
+				$scope.$apply();
+				return;
+			}
 		}
 	});
 
+	//タイムラインを動かします
 	$timeout(function(){
-		if($scope.keyE.isEnd) return;
+		if($scope.timelines.every(checkTimelineEndAll)) return;
 
-		$scope.keyQ.movePops();
-		$scope.keyW.movePops();
-		$scope.keyE.movePops();
+		$scope.timelines.forEach(function(timeline){
+			timeline.movePops();
+		});
 
 		$timeout(arguments.callee, 500);
 	}, 1000);
+
+
+
+	//good、badを集計します
+	function count(key, count, timeline){
+		count += timeline[key];
+		return count;
+	}
+
+	function checkTimelineEndAll(timeline){
+		return timeline.isEnd;
+	}
 }
