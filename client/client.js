@@ -14,13 +14,18 @@ function test($scope, $timeout){
 			new kbcc2005.Pop(7),
 			new kbcc2005.Pop(12),
 			new kbcc2005.Pop(17)
+		]),
+		new kbcc2005.Timeline([
+			new kbcc2005.Pop(7),
+			new kbcc2005.Pop(13),
+			new kbcc2005.Pop(18)
 		])
 	];
 	$scope.good = 0;
 	$scope.bad = 0;
 
 	//Q, W, E
-	var keyCodes = [81, 87, 69];
+	var keyCodes = [81, 87, 69, 82];
 	$scope.keys = keyCodes.map(function(keyCode){
 		return String.fromCharCode(keyCode);
 	});
