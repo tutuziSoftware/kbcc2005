@@ -1,30 +1,34 @@
 function test($scope, $timeout){
 	$scope.timelines = [
 		new kbcc2005.Timeline([
-			new kbcc2005.Pop(5),
+			new kbcc2005.Pop(3),
 			new kbcc2005.Pop(10),
-			new kbcc2005.Pop(15)
+			new kbcc2005.Pop(18),
+			new kbcc2005.Pop(25)
+		]),
+		new kbcc2005.Timeline([
+			new kbcc2005.Pop(4),
+			new kbcc2005.Pop(11),
+			new kbcc2005.Pop(19),
+			new kbcc2005.Pop(26)
 		]),
 		new kbcc2005.Timeline([
 			new kbcc2005.Pop(6),
-			new kbcc2005.Pop(11),
-			new kbcc2005.Pop(16)
+			new kbcc2005.Pop(14),
+			new kbcc2005.Pop(21),
+			new kbcc2005.Pop(29)
 		]),
 		new kbcc2005.Timeline([
 			new kbcc2005.Pop(7),
-			new kbcc2005.Pop(12),
-			new kbcc2005.Pop(17)
-		]),
-		new kbcc2005.Timeline([
-			new kbcc2005.Pop(7),
-			new kbcc2005.Pop(13),
-			new kbcc2005.Pop(18)
+			new kbcc2005.Pop(15),
+			new kbcc2005.Pop(22),
+			new kbcc2005.Pop(30)
 		])
 	];
 	$scope.good = 0;
 	$scope.bad = 0;
 
-	//Q, W, E
+	//Q, W, E, R
 	var keyCodes = [81, 87, 69, 82];
 	$scope.keys = keyCodes.map(function(keyCode){
 		return String.fromCharCode(keyCode);
@@ -45,16 +49,18 @@ function test($scope, $timeout){
 		}
 	});
 
-	//タイムラインを動かします
-	$timeout(function(){
-		if($scope.timelines.every(checkTimelineEndAll)) return;
+	$scope.start = function(){
+		//タイムラインを動かします
+		$timeout(function(){
+			if($scope.timelines.every(checkTimelineEndAll)) return;
 
-		$scope.timelines.forEach(function(timeline){
-			timeline.movePops();
-		});
+			$scope.timelines.forEach(function(timeline){
+				timeline.movePops();
+			});
 
-		$timeout(arguments.callee, 500);
-	}, 1000);
+			$timeout(arguments.callee, 1000);
+		}, 1000);
+	};
 
 
 

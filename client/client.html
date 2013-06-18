@@ -9,6 +9,44 @@
 	<script src="./timeline.js"></script>
 	<script src="./client.js"></script>
 	<link href="client.css" rel="stylesheet">
+	<script>
+		$(function(){
+			var script = document.createElement( 'script' );
+			script.src = "http://www.youtube.com/iframe_api";
+
+			var firstScriptTag = document.getElementsByTagName('script')[0];
+			firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+
+			window.onYouTubeIframeAPIReady = function(){
+				var player = new YT.Player('player',
+					{
+						videoId: 'K0N3RPT_Et8',
+						events:{
+							onReady:function(event){
+								var player = event.target;
+								player.playVideo();
+							},
+							onStateChange:createOnStart()
+						}
+					}
+				);
+
+				console.log(player);
+			};
+
+			function createOnStart(){
+				var isStarted = false;
+
+				return function onStart(e){
+					if(e.data === YT.PlayerState.PLAYING && isStarted == false){
+						isStarted = true;
+						var scope = angular.element($('[ng-controller="test"]')[0]).scope();
+						scope.start();
+					}
+				};
+			}
+		});
+	</script>
 </head>
 <body ng-controller="test">
 	<div class="timeline"
@@ -20,5 +58,10 @@
 	<div style="clear:both">good: {{good}}</div>
 	<div>bad: {{bad}}</div>
 	<div ng-show="keyE.isEnd">おしまい！</div>
+	<div class="video-container" style="max-width: 300px; background: orange;"> <!-- ここの width は省略不可 -->
+		<div class="video">
+			<div id="player"></div>
+		</div>
+	</div>
 </body>
 </html>
