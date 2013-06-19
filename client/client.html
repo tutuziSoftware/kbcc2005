@@ -50,15 +50,15 @@
 </head>
 <body ng-controller="test">
 	<div class="timeline"
-		ng-repeat="timeline in timelines"
-		ng-class="'tl' + timeline.getOffset()">
-		<div>{{timeline.getOffset()}}</div>
-		<div>{{keys[$index]}}</div>
+		ng-repeat="pop in pops"
+		ng-class="'tl' + pop.timeline.getOffset()">
+		<div>{{pop.timeline.getOffset()}}</div>
+		<div>{{pop.key}}</div>
 	</div>
 	<div style="clear:both">good: {{good}}</div>
 	<div>bad: {{bad}}</div>
 	<div ng-show="keyE.isEnd">おしまい！</div>
-	<div class="video-container" style="max-width: 300px; background: orange;"> <!-- ここの width は省略不可 -->
+	<div class="video-container">
 		<div class="video">
 			<div id="player"></div>
 		</div>
