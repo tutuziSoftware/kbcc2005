@@ -3,37 +3,37 @@ function test($scope, $timeout){
 		{
 			key:'Q',
 			timeline:new kbcc2005.Timeline([
-				new kbcc2005.Pop(3),
-				new kbcc2005.Pop(10),
-				new kbcc2005.Pop(18),
-				new kbcc2005.Pop(25)
+				new kbcc2005.Pop(12),
+				new kbcc2005.Pop(40),
+				new kbcc2005.Pop(72),
+				new kbcc2005.Pop(100)
 			])
 		},
 		{
 			key:'W',
 			timeline:new kbcc2005.Timeline([
-				new kbcc2005.Pop(4),
-				new kbcc2005.Pop(11),
-				new kbcc2005.Pop(19),
-				new kbcc2005.Pop(26)
+				new kbcc2005.Pop(16),
+				new kbcc2005.Pop(44),
+				new kbcc2005.Pop(76),
+				new kbcc2005.Pop(104)
 			])
 		},
 		{
 			key:'E',
 			timeline:new kbcc2005.Timeline([
-				new kbcc2005.Pop(7),
-				new kbcc2005.Pop(14),
-				new kbcc2005.Pop(21),
-				new kbcc2005.Pop(29)
+				new kbcc2005.Pop(28),
+				new kbcc2005.Pop(56),
+				new kbcc2005.Pop(84),
+				new kbcc2005.Pop(116)
 			])
 		},
 		{
 			key:'R',
 			timeline:new kbcc2005.Timeline([
-				new kbcc2005.Pop(8),
-				new kbcc2005.Pop(15),
-				new kbcc2005.Pop(22),
-				new kbcc2005.Pop(30)
+				new kbcc2005.Pop(32),
+				new kbcc2005.Pop(60),
+				new kbcc2005.Pop(88),
+				new kbcc2005.Pop(120)
 			])
 		}
 	];
@@ -63,8 +63,8 @@ function test($scope, $timeout){
 				timeline.timeline.movePops();
 			});
 
-			$timeout(arguments.callee, 1000);
-		}, 1000);
+			$timeout(arguments.callee, 250);
+		}, 250);
 	};
 
 
